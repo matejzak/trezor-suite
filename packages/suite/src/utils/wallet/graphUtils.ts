@@ -53,7 +53,7 @@ export const isAccountAggregatedHistory = (
 };
 
 type TypeName = 'account' | 'dashboard';
-type ObjectType<T> = T extends 'account'
+export type AggregatedReturnType<T> = T extends 'account'
     ? AggregatedAccountHistory
     : T extends 'dashboard'
     ? AggregatedDashboardHistory
@@ -62,8 +62,8 @@ export const aggregateBalanceHistory = <TType extends TypeName>(
     graphData: GraphData[],
     groupBy: 'day' | 'month',
     type: TType,
-): ObjectType<TType>[] => {
-    const groupedByTimestamp: { [key: string]: ObjectType<TType> } = {};
+): AggregatedReturnType<TType>[] => {
+    const groupedByTimestamp: { [key: string]: AggregatedReturnType<TType> } = {};
     for (let i = 0; i < graphData.length; i++) {
         const accountHistory = graphData[i].data;
 
@@ -104,7 +104,7 @@ export const aggregateBalanceHistory = <TType extends TypeName>(
 
                     groupedByTimestamp[key] = (type === 'account'
                         ? accountProps
-                        : baseProps) as ObjectType<TType>;
+                        : baseProps) as AggregatedReturnType<TType>;
                 } else {
                     // add txs, sentFiat, receivedFiat values to existing entry
                     bin.txs += dataPoint.txs;

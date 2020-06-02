@@ -1,3 +1,5 @@
+import { GraphData } from '@wallet-reducers/graphReducer';
+
 export interface CoinListItem {
     id: string;
     symbol: string;
@@ -60,4 +62,17 @@ export interface AggregatedAccountHistory extends CommonAggregatedHistory {
 export interface AggregatedDashboardHistory extends CommonAggregatedHistory {
     sent?: never;
     received?: never;
+}
+
+export interface GraphMessageEventPayload {
+    history: GraphData[];
+    groupBy: 'day' | 'month';
+    type: 'account' | 'dashboard';
+}
+export interface GraphMessageEventRequest extends MessageEvent {
+    data: {
+        history: GraphData[];
+        groupBy: 'day' | 'month';
+        type: 'account' | 'dashboard';
+    };
 }

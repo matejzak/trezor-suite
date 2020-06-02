@@ -10,6 +10,7 @@ import { CARD_PADDING_SIZE } from '@suite-constants/layout';
 // https://github.com/zeit/next.js/issues/4768
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import GraphWorker from 'worker-loader?name=static/[hash].worker.js!../../../../../workers/graph.worker';
+import { AggregatedReturnType } from '@wallet-utils/graphUtils';
 
 const Wrapper = styled.div`
     display: flex;
@@ -96,7 +97,7 @@ const DashboardGraph = React.memo((props: Props) => {
                 type: 'dashboard',
             });
 
-            const handleMessage = (event: MessageEvent) => {
+            const handleMessage = (event: { data: AggregatedReturnType<'dashboard'>[] }) => {
                 const aggregatedData = event.data;
                 const graphTicks =
                     selectedRange.label === 'all'
