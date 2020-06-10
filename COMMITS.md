@@ -1,6 +1,13 @@
-# Commits conventios
+# Commits
 
 Using [conventional commits](https://www.conventionalcommits.org/en/v1.0.0-beta.2/#specification) is recommended and might be enforced in future.
+
+### Examples 
+```
+docs: correct spelling of CHANGELOG
+feat: allow provided config object to extend other configs
+feat(lang): added polish language
+```
 
 ### Git hook
 
