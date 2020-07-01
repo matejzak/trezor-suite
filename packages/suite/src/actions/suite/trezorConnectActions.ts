@@ -83,6 +83,14 @@ export const init = () => async (dispatch: Dispatch, getState: GetState) => {
             },
         });
 
+        TrezorConnect.blockchainSetCustomBackend({
+            coin: 'TAZ',
+            blockchainLink: {	
+                type: 'blockbook',	
+                url: ['https://blockbook-dev.corp.sldev.cz:19132/'],	
+            },
+        })
+
         dispatch({
             type: SUITE.CONNECT_INITIALIZED,
         });
